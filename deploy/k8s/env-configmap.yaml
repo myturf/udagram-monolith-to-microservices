@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  AWS_MEDIA_BUCKET: uc-439840306573-mono-micro
+  AWS_PROFILE: default
+  AWS_REGION: us-east-2
+  JWT_TOKEN: helloworld
+  POSTGRES_DATABASE: postgres
+  POSTGRES_HOST: ucmonomicro.cw62cc3vgbnh.us-east-2.rds.amazonaws.com
+  URL: http://localhost:8100
+metadata:
+  name: env-config

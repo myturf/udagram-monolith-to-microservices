@@ -1,0 +1,18 @@
+version: "3"
+services:
+  reverse-proxy:
+    build:
+      context: .
+    image: iamhere9/reverse-proxy
+  udagram-api-user:
+    build:
+      context: ../../udagram-api-user
+    image: iamhere9/udagram-api-user
+  udagram-api-feed:
+    build:
+      context: ../../udagram-api-feed
+    image: iamhere9/udagram-api-feed
+  udagram-frontend:
+    build:
+      context: ../../udagram-frontend
+    image: iamhere9/udagram-frontend:local

@@ -1,0 +1,42 @@
+version: "3"
+services:
+  reverse-proxy:
+      image: iamhere9/reverse-proxy
+      ports:
+          - 8080:8080
+      restart: always
+      depends_on:
+        - udagram-api-feed
+        - udagram-api-user
+  udagram-api-user:
+    image: iamhere9/udagram-api-user
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRES_USERNAME: $POSTGRES_USERNAME
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DATABASE: $POSTGRES_DATABASE
+      POSTGRES_HOST: $POSTGRES_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_MEDIA_BUCKET: $AWS_MEDIA_BUCKET
+      JWT_TOKEN: $JWT_TOKEN
+      URL: "http://localhost:8100"
+  udagram-api-feed:
+    image: iamhere9/udagram-api-feed
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRES_USERNAME: $POSTGRES_USERNAME
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $POSTGRES_DATABASE
+      POSTGRES_HOST: $POSTGRES_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_MEDIA_BUCKET: $AWS_MEDIA_BUCKET
+      JWT_TOKEN: $JWT_TOKEN
+      URL: "http://localhost:8100"
+  udagram-frontend:
+    image: iamhere9/udagram-frontend:local
+    ports:
+      - "8100:80"

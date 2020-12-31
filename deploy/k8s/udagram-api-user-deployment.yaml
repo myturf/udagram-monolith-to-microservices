@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-api-user
+  labels:
+    service: backend-user-svc
+    app: udagram-api-user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udagram-api-user
+  template:
+    metadata:
+      labels:
+        app: udagram-api-user
+    spec:
+      containers:
+      - image: iamhere9/udagram-api-user
+        name: udagram-api-user
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        env:
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL
+        - name: JWT_TOKEN
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: JWT_TOKEN
+        - name: POSTGRES_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DATABASE
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_USERNAME
+      restartPolicy: Always
