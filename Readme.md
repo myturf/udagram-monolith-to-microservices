@@ -8,10 +8,10 @@ Entire Project is divided into 4 parts (each in its own directory):
 3. udagram-frontend - ionic frontend application, No changes were made to this part.
 4. deploy - contains yaml files for kubernetes services and deployments, also contains reverse proxy and docker compose.
 
-##Travis CI Integration
+## Travis CI Integration
 One of the project requirement was that we build CI/CD pipeline using travisCI. TravisCI is linked to this repository and details are in .travis.yml
 
-##Screen Shots
+## Screen Shots
 Relevant Build/Deploy Screen shots are screenshots folder.
 
 ## Runing the project:
