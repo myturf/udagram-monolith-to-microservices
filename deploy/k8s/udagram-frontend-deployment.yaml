@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: udagram-frontend
   labels:
-    service: udagram-frontend-svc
     app: udagram-frontend
 spec:
   replicas: 2
@@ -14,13 +13,12 @@ spec:
     metadata:
       labels:
         app: udagram-frontend
-        service: udagram-frontend-svc
         api: external
     spec:
       containers:
       - image: iamhere9/udagram-frontend:local
         name: udagram-frontend
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         ports:
         - containerPort: 80
         resources:

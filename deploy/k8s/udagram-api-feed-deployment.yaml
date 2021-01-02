@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: udagram-api-feed
   labels:
-    service: udagram-api-feed-svc
     app: udagram-api-feed
 spec:
   replicas: 2
@@ -18,7 +17,7 @@ spec:
       containers:
       - image: iamhere9/udagram-api-feed
         name: udagram-api-feed
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         resources:
           requests:
             memory: "64Mi"

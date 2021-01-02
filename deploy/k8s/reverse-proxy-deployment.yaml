@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: reverse-proxy-svc
     app: reverse-proxy
   name: reverse-proxy
 spec:
@@ -18,7 +17,7 @@ spec:
       containers:
       - image: iamhere9/reverse-proxy
         name: reverse-proxy
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         resources:
           requests:
             memory: "64Mi"

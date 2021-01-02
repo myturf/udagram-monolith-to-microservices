@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: udagram-api-user
   labels:
-    service: backend-user-svc
     app: udagram-api-user
 spec:
   replicas: 2
@@ -18,7 +17,7 @@ spec:
       containers:
       - image: iamhere9/udagram-api-user
         name: udagram-api-user
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         resources:
           requests:
             memory: "64Mi"
